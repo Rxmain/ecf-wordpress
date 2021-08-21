@@ -370,7 +370,21 @@ body:not(.home):not(.formation-simple) main {
     opacity: 1;
     transform: scale(1.2)
 }
-
+.icon-facebook, .icon-twitter, .icon-linkedin {
+    height: 35px;
+    width: 40px;
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+.icon-facebook {
+    background-image: url('../img/icon-facebook.svg');
+} 
+.icon-twitter {
+    background-image: url('../img/icon-twitter.svg');
+}
+.icon-linkedin {
+    background-image: url('../img/icon-linkedin.svg');
+}
 /* Main footer */
 
 .main-footer {
@@ -391,7 +405,7 @@ body:not(.home):not(.formation-simple) main {
 /* Homepage */
 
 .home-hero {
-    background-image: url(../img/hero-background.jpg);
+    background-image: url('/img/hero-background.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -596,19 +610,19 @@ body:not(.home):not(.formation-simple) main {
 
 /* Pagination */
 
-.pagination {
+.navigation {
     grid-column: 1/-1;
     margin-top: 4rem;
     color: var(--secondary);
 }
 
-.pagination-list {
+.nav-links {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.pagination-link {
+.page-numbers {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -623,9 +637,9 @@ body:not(.home):not(.formation-simple) main {
     border-radius: 0.5rem;
 }
 
-.current .pagination-link,
-.pagination-link:hover,
-.pagination-link:focus {
+.page-numbers.current,
+.page-numbers:hover,
+.page-numbers:focus {
     color: #fff;
     background-color: var(--secondary);
 }

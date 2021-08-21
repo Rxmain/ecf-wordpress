@@ -19,11 +19,106 @@ function mpf_enqueue_styles_and_scripts() {
 add_action('wp_enqueue_scripts', 'mpf_enqueue_styles_and_scripts');
 
 
+
 function meks_which_template_is_loaded() {
     if ( is_super_admin() ) {
         global $template;
         print_r( $template );
     }
 }
- 
 add_action( 'wp_footer', 'meks_which_template_is_loaded' );
+
+/* Fonction pour gérer les tailles d'images */
+function theme_new_image(){
+
+    add_image_size( 'thumb-articles', 400, 260 );
+    add_image_size( 'thumb-students', 220, 220 );
+
+}
+add_action( 'after_setup_theme', 'theme_new_image' );
+
+
+/* Gestion des menus */ 
+register_nav_menus( array(
+	'main-menu' => 'Menu Principal',
+	'footer-menu' => 'Bas de page',
+    'social-media-menu'  => "Réseaux sociaux",
+) );
+
+/* Ajout icon réseaux sociaux sur MENU */
+function my_wp_nav_menu_objects($items, $args)
+{
+	foreach ($items as &$item) {
+        $icon = get_field('network', $item);
+
+		if ($icon) {
+            $item->title = ' <span class="screen-reader-text">' . $item->title . ' du CEFIM</span><span class="icon-'.$icon.'"></span>';
+        }
+	}
+
+	return $items;
+}
+add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
+
+/* Ajout page d'options ACF */
+
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title'    => __('Infos de contact'),
+        'icon_url' => 'dashicons-location'
+	));
+}
+
+
+/*
+* Création de CPT
+*/
+
+function cefim_custom_post_type() {
+
+	// On rentre les différentes dénominations de notre custom post type qui seront affichées dans l'administration
+	$labels = array(
+		// Le nom au pluriel
+		'name'                => _x( 'Les étudiants', 'etudiants'),
+		// Le nom au singulier
+		'singular_name'       => _x( 'Étudiant', 'etudiant'),
+		// Le libellé affiché dans le menu
+		'menu_name'           => __( 'Les étudiants'),
+		// Les différents libellés de l'administration
+		'all_items'           => __( 'Tous les étudiants'),
+		'view_item'           => __( 'Voir les étudiants'),
+		'add_new_item'        => __( 'Ajouter nouvel étudiant'),
+		'add_new'             => __( 'Ajouter'),
+		'edit_item'           => __( 'Editer l\'étudiant'),
+		'update_item'         => __( 'Modifier l\'étudiant'),
+		'search_items'        => __( 'Rechercher un étudiant'),
+		'not_found'           => __( 'Non trouvé'),
+		'not_found_in_trash'  => __( 'Non trouvé dans la corbeille'),
+	);
+	
+	// On peut définir ici d'autres options pour notre custom post type
+	
+	$args = array(
+		'label'               => __( 'Les étudiants'),
+		'description'         => __( 'Tous sur les étudiants'),
+		'labels'              => $labels,
+		// On définit les options disponibles dans l'éditeur de notre custom post type ( un titre, un auteur...)
+		'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields', ),
+		/* 
+		* Différentes options supplémentaires
+		*/
+		'show_in_rest' => true,
+		'hierarchical'        => false,
+		'public'              => true,
+		'has_archive'         => true,
+		'rewrite'			  => array( 'slug' => 'etudiants'),
+        'menu_icon'      => 'dashicons-welcome-learn-more',
+
+	);
+	
+	// On enregistre notre custom post type qu'on nomme ici "serietv" et ses arguments
+	register_post_type( 'etudiants', $args );
+
+}
+
+add_action( 'init', 'cefim_custom_post_type', 0 );
