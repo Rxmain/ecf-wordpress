@@ -98,25 +98,31 @@
     </section>
     <section class="modules">
         <div class="container">
-            <h2 class="section-title">Les modules de la formation</h2>
-            <article class="card">
-                <img loading="lazy"  src="img/formation-1.jpg" alt="Some code" class="card-img" srcset="img/formation-1.jpg,
-                img/formation-1_2x.jpg 2x">
-                <div class="card-content">
-                    <h2 class="card-title">Module HTML/CSS</h2>
-                    <p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-                </div>
-                <a href="formation-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-            </article>
-            <article class="card">
-                <img loading="lazy"  src="img/formation-2.jpg" alt="A coloured keyboard" class="card-img" srcset="img/formation-2.jpg,
-                img/formation-2_2x.jpg 2x">
-                <div class="card-content">
-                    <h2 class="card-title">Module JavaScript</h2>
-                    <p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-                </div>
-                <a href="formation-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-            </article>
+            <h2 class="section-title">
+                <?php if(!empty(get_field('formations_title'))):?>
+                    <?php echo the_field('formations_title');?>
+                <?php endif;?>
+            </h2>
+            <?php $featured_formations = get_field('formation_choice'); ?>      
+            <?php if( $featured_formations ): ?>
+                <?php foreach( $featured_formations as $formation ): ?>
+                    <?php $permalink = get_permalink($formation->ID);
+                        $title = get_the_title($formation->ID);
+                        $excerpt = get_the_excerpt($formation->ID);
+                        $thumbnail_id = get_post_thumbnail_id( $formation->ID );
+                        $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); 
+                    ?>
+                    <article class="card">
+                        <img loading="lazy"  src="<?php echo get_template_directory_uri(); ?>/img/formation-1.jpg" alt="Some code" class="card-img" srcset="<?php echo get_template_directory_uri(); ?>/img/formation-1.jpg,
+                        <?php echo get_template_directory_uri(); ?>/img/formation-1_2x.jpg 2x">
+                        <div class="card-content">
+                            <h2 class="card-title"><?php echo $title; ?></h2>
+                            <p class="card-excerpt"><?php echo $excerpt; ?></p>
+                        </div>
+                        <a href="<?php echo esc_url( $permalink ); ?>" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
+                    </article>
+                <?php endforeach; ?>
+            <?php endif;?>
         </div>
     </section>
 </main> -->

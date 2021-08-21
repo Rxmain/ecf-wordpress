@@ -77,7 +77,7 @@ if( function_exists('acf_add_options_page') ) {
 function cefim_custom_post_type() {
 
 	// On rentre les différentes dénominations de notre custom post type qui seront affichées dans l'administration
-	$labels = array(
+	$labelsStudent = array(
 		// Le nom au pluriel
 		'name'                => _x( 'Les étudiants', 'etudiants'),
 		// Le nom au singulier
@@ -91,9 +91,6 @@ function cefim_custom_post_type() {
 		'add_new'             => __( 'Ajouter'),
 		'edit_item'           => __( 'Editer l\'étudiant'),
 		'update_item'         => __( 'Modifier l\'étudiant'),
-		'search_items'        => __( 'Rechercher un étudiant'),
-		'not_found'           => __( 'Non trouvé'),
-		'not_found_in_trash'  => __( 'Non trouvé dans la corbeille'),
 	);
 	
 	// On peut définir ici d'autres options pour notre custom post type
@@ -101,7 +98,7 @@ function cefim_custom_post_type() {
 	$args = array(
 		'label'               => __( 'Les étudiants'),
 		'description'         => __( 'Tous sur les étudiants'),
-		'labels'              => $labels,
+		'labels'              => $labelsStudent,
 		// On définit les options disponibles dans l'éditeur de notre custom post type ( un titre, un auteur...)
 		'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields', ),
 		/* 
@@ -112,13 +109,50 @@ function cefim_custom_post_type() {
 		'public'              => true,
 		'has_archive'         => true,
 		'rewrite'			  => array( 'slug' => 'etudiants'),
+        'menu_icon'      => 'dashicons-groups',
+
+	);
+
+    $labelsFormation = array (
+        // Le nom au pluriel
+		'name'                => _x( 'Les formations', 'formations'),
+		// Le nom au singulier
+		'singular_name'       => _x( 'Formation', 'formation'),
+		// Le libellé affiché dans le menu
+		'menu_name'           => __( 'Les formations'),
+		// Les différents libellés de l'administration
+		'all_items'           => __( 'Tous les formations'),
+		'view_item'           => __( 'Voir les formations'),
+		'add_new_item'        => __( 'Ajouter une nouvelle formation'),
+		'add_new'             => __( 'Ajouter'),
+		'edit_item'           => __( 'Editer la formation'),
+		'update_item'         => __( 'Modifier la formation'),
+    );
+
+    $argsFormations = array(
+		'label'               => __( 'Les formations'),
+		'description'         => __( 'Tous sur les formations'),
+		'labels'              => $labelsFormation,
+		// On définit les options disponibles dans l'éditeur de notre custom post type ( un titre, un auteur...)
+		'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields', ),
+		/* 
+		* Différentes options supplémentaires
+		*/
+		'show_in_rest' => true,
+		'hierarchical'        => false,
+		'public'              => true,
+		'has_archive'         => true,
+		'rewrite'			  => array( 'slug' => 'formations'),
         'menu_icon'      => 'dashicons-welcome-learn-more',
 
 	);
 	
 	// On enregistre notre custom post type qu'on nomme ici "serietv" et ses arguments
 	register_post_type( 'etudiants', $args );
+	register_post_type( 'formations', $argsFormations );
 
 }
 
 add_action( 'init', 'cefim_custom_post_type', 0 );
+
+add_filter('wpcf7_autop_or_not', '__return_false');
