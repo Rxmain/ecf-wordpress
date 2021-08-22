@@ -188,7 +188,7 @@ body:not(.home):not(.single-formations) main {
     row-gap: 4rem;
 }
 
-.contact-form {
+.wpcf7-form {
     display: grid;
     -moz-column-gap: 1.6rem;
     column-gap: 1.6rem;
@@ -302,7 +302,7 @@ body:not(.home):not(.single-formations) main {
     text-decoration: none;
 }
 
-.menu .active a,
+.menu .current-menu-item a,
 .menu a:hover,
 .menu a:focus {
     color: var(--secondary);
@@ -331,7 +331,9 @@ body:not(.home):not(.single-formations) main {
     display: flex;
     justify-content: space-evenly;
 }
-
+.menu-reseaux-sociaux-container {
+    width: 100%;
+}
 .social-nav .menu-item {
     display: flex;
 }
@@ -375,6 +377,7 @@ body:not(.home):not(.single-formations) main {
     width: 40px;
     background-size: auto;
     background-repeat: no-repeat;
+    background-position: center;
 }
 .icon-facebook {
     background-image: url('../img/icon-facebook.svg');
@@ -405,7 +408,7 @@ body:not(.home):not(.single-formations) main {
 /* Homepage */
 
 .home-hero {
-    background-image: url('/img/hero-background.jpg');
+    /* background-image: url('/img/hero-background.jpg'); */
     background-size: cover;
     background-position: center;
 }
@@ -603,7 +606,7 @@ body:not(.home):not(.single-formations) main {
     align-items: center;
     min-height: 40rem;
     color: #fff;
-    background-image: url(../img/formation-1.jpg);
+    /* background-image: url(../img/formation-1.jpg); */
     background-size: cover;
     background-position: center;
 }
@@ -646,53 +649,33 @@ body:not(.home):not(.single-formations) main {
 
 /* Contact */
 
-.contact-form [for="msg"],
-.contact-form button {
+.wpcf7-form input[type="textarea"],
+.wpcf7-form input[type="submit"] {
     grid-column: 1/-1;
 }
 
-.contact-form .field>* {
+.wpcf7-form label>* {
     display: block;
     width: 100%;
 }
 
-.contact-form input,
-.contact-form textarea {
+.wpcf7-form input,
+.wpcf7-form textarea {
     padding: 1rem 0;
     border: 0;
     border-bottom: .1rem solid #707070;
 }
 
-.contact-form textarea {
+.wpcf7-form textarea {
     min-height: 24rem;
 }
 
-.contact-form ::-webkit-input-placeholder {
+.wpcf7-form input[name='placeholder'], span.placeholder{
     font-style: italic;
     color: rgba(51, 17, 0, .5);
 }
 
-.contact-form ::-moz-placeholder {
-    font-style: italic;
-    color: rgba(51, 17, 0, .5);
-}
-
-.contact-form :-ms-input-placeholder {
-    font-style: italic;
-    color: rgba(51, 17, 0, .5);
-}
-
-.contact-form ::-ms-input-placeholder {
-    font-style: italic;
-    color: rgba(51, 17, 0, .5);
-}
-
-.contact-form ::placeholder {
-    font-style: italic;
-    color: rgba(51, 17, 0, .5);
-}
-
-.contact-form button {
+.wpcf7-form input[type='submit'] {
     justify-self: flex-end;
     display: flex;
     padding: 1rem 2rem;
@@ -701,13 +684,22 @@ body:not(.home):not(.single-formations) main {
     background-color: var(--secondary);
     border-radius: 0.4rem;
 }
+.wpcf7-form input[type="text"] {
+    width: 100%;
+}
+.wpcf7-form textarea {
+    width: 200%;
+    font-style: italic;
+    color: rgba(51, 17, 0, .5);
 
-.contact-form button img {
+}
+
+.wpcf7-form button img {
     margin-left: 2rem;
 }
 
-.contact-form button:hover img,
-.contact-form button:focus img {
+.wpcf7-form button:hover img,
+.wpcf7-form button:focus img {
     -webkit-animation: arrowMove .3s infinite alternate;
     animation: arrowMove .3s infinite alternate;
 }
@@ -731,7 +723,7 @@ body:not(.home):not(.single-formations) main {
 
 .post-date::before {
     display: flex;
-    content: url('../img/icon-date.svg');
+    content: url('/../img/icon-date.svg');
     margin-right: 0.8rem;
 }
 
@@ -806,12 +798,8 @@ body:not(.home):not(.single-formations) main {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .contact-form {
+    .wpcf7-form {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .module-hero {
-        background-image: url(../img/formation-1_2x.jpg);
     }
 }
 

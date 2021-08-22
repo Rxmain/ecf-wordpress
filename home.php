@@ -9,7 +9,7 @@ get_header();
 
 	<div class="container">
 
-		<h1 class="section-title">Les actualités</h1>
+		<h1 class="section-title"><?php the_field('news_title', 'options');?></h1>
 
 		<?php if( have_posts() ) : while( have_posts() ) : the_post(); ?>
 
@@ -40,61 +40,6 @@ get_header();
 			'next_text' => __( '» <span class="screen-reader-text">Suivant</span>', 'cefimtheme' ),
 		) ); ?>
 </main> 
-
-			<!-- 
-			<article class="card">
-				<img loading="lazy"  src="img/news-2.jpg" alt="A macbook" class="card-img" srcset="img/news-2.jpg,
-				img/news-2_2x.jpg 2x">
-				<div class="card-content">
-					<p class="card-date"><time datetime="2020-02-12">12/02/2020</time></p>
-					<h2 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
-					<p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-				</div>
-				<a href="actualite-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-			</article>
-			<article class="card">
-				<img loading="lazy"  src="img/news-3.jpg" alt="A keyboard" class="card-img" srcset="img/news-3.jpg,
-				img/news-3_2x.jpg 2x">
-				<div class="card-content">
-					<p class="card-date"><time datetime="2020-02-12">12/02/2020</time></p>
-					<h2 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
-					<p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-				</div>
-				<a href="actualite-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-			</article>
-			<article class="card">
-				<img loading="lazy"  src="img/news-1.jpg" alt="Some code" class="card-img" srcset="img/news-1.jpg,
-				img/news-1_2x.jpg 2x">
-				<div class="card-content">
-					<p class="card-date"><time datetime="2020-02-12">12/02/2020</time></p>
-					<h2 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
-					<p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-				</div>
-				<a href="actualite-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-			</article>
-			<article class="card">
-				<img loading="lazy"  src="img/news-2.jpg" alt="A macbook" class="card-img" srcset="img/news-2.jpg,
-				img/news-2_2x.jpg 2x">
-				<div class="card-content">
-					<p class="card-date"><time datetime="2020-02-12">12/02/2020</time></p>
-					<h2 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
-					<p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-				</div>
-				<a href="actualite-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-			</article>
-			<article class="card">
-				<img loading="lazy"  src="img/news-3.jpg" alt="A keyboard" class="card-img" srcset="img/news-3.jpg,
-				img/news-3_2x.jpg 2x">
-				<div class="card-content">
-					<p class="card-date"><time datetime="2020-02-12">12/02/2020</time></p>
-					<h2 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
-					<p class="card-excerpt">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, …</p>
-				</div>
-				<a href="actualite-simple.html" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
-			</article> -->
-			
-		<!-- </div> -->
-
 <?php
 get_footer();
 ?>

@@ -14,7 +14,7 @@ function mpf_enqueue_styles_and_scripts() {
     wp_enqueue_style('ecf-style', get_template_directory_uri() . '/css/style.css');
     
     /* Chargement des scripts */
-    wp_enqueue_script('nav', get_stylesheet_directory_uri() . '/js/nav.js', array(), '1.0');
+    wp_enqueue_script('nav', get_stylesheet_directory_uri() . '/js/nav.js', array(), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'mpf_enqueue_styles_and_scripts');
 
@@ -66,6 +66,10 @@ if( function_exists('acf_add_options_page') ) {
     acf_add_options_page(array(
         'page_title'    => __('Infos de contact'),
         'icon_url' => 'dashicons-location'
+	));
+    acf_add_options_page(array(
+        'page_title'    => __('Contenu général'),
+        'icon_url' => 'dashicons-media-default'
 	));
 }
 
@@ -156,3 +160,15 @@ function cefim_custom_post_type() {
 add_action( 'init', 'cefim_custom_post_type', 0 );
 
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+add_action( 'pre_get_posts', 'tl_project_page' );
+
+// Show all Projects on Projects Archive Page
+function tl_project_page( $query ) {
+    if ( !is_admin() && $query->is_main_query() && is_post_type_archive( 'etudiants' ) ) {
+            $query->set( 'posts_per_page', '12' );
+    }
+    if ( !is_admin() && $query->is_main_query() && is_post_type_archive( 'formations' ) ) {
+        $query->set( 'posts_per_page', '6' );
+    }
+}

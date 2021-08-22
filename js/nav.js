@@ -1,5 +1,7 @@
-const toggleMenu = document.querySelector('.main-nav button');
-const menu = document.querySelector('#main-menu');
+const toggleMenu = document.querySelector('.main-nav .button-menu');
+const menu = document.querySelector('.menu');
+
+menu.hidden = true;
 
 toggleMenu.addEventListener('click', function() {
   const open = JSON.parse(toggleMenu.getAttribute('aria-expanded'));

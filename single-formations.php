@@ -1,7 +1,7 @@
 <?php get_header();?>
 
 <main id="main-content" class="post">
-    <section class="module-hero">
+    <section class="module-hero" style="background-image:url('<?php echo get_the_post_thumbnail_url() ?>');?>">
         <div class="container">
             <h1><?php the_title();?></h1>
         </div>

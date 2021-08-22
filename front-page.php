@@ -99,8 +99,8 @@
     <section class="modules">
         <div class="container">
             <h2 class="section-title">
-                <?php if(!empty(get_field('formations_title'))):?>
-                    <?php echo the_field('formations_title');?>
+                <?php if(!empty(get_field('formation_title'))):?>
+                    <?php echo the_field('formation_title');?>
                 <?php endif;?>
             </h2>
             <?php $featured_formations = get_field('formation_choice'); ?>      
@@ -119,12 +119,12 @@
                             <h2 class="card-title"><?php echo $title; ?></h2>
                             <p class="card-excerpt"><?php echo $excerpt; ?></p>
                         </div>
-                        <a href="<?php echo esc_url( $permalink ); ?>" class="card-link">Lire la suite <img loading="lazy"  src="img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
+                        <a href="<?php echo esc_url( $permalink ); ?>" class="card-link">Lire la suite <img loading="lazy"  src="<?php echo get_template_directory_uri(); ?>/img/icon-arrow-right.svg" alt="" aria-hidden="true"></a>
                     </article>
                 <?php endforeach; ?>
             <?php endif;?>
         </div>
     </section>
-</main> -->
+</main>
 
 <?php get_footer(); ?>

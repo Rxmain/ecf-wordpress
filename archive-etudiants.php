@@ -1,24 +1,11 @@
-<?php
-/*
-Template Name: Les etudiants
-*/
-?>
 <?php get_header(); ?>
 	<main id="main-content" class="students">
 		<div class="container">
-			<h1 class="section-title">Les étudiants</h1>
+			<h1 class="section-title"><?php the_field('students_page_title', 'options');?></h1>
 
-			<?php $args = array(  
-				'post_type' => 'etudiants',
-				'post_status' => 'publish',
-				'posts_per_page' => 12, 
-				'orderby' => 'title', 
-				'order' => 'ASC', 
-			);
-
-			$loop = new WP_Query( $args ); 
-				
-			while ( $loop->have_posts() ) : $loop->the_post(); ?>
+			<?php if ( have_posts() ) :
+			while ( have_posts() ) : the_post();?>
+			
 				<article class="student">
 					<?php if( has_post_thumbnail()): ?>
 						<?php $img_id = get_post_thumbnail_id(get_the_ID('thumb-articles'));                        
@@ -29,9 +16,10 @@ Template Name: Les etudiants
 					<h2 class="student-name"><?php the_title();?></h2>
 					<a href="<?php the_permalink();?>" class="student-link">En savoir plus</a>
 				</article>
-			<?php endwhile;
-
-			wp_reset_postdata(); ?>
+			<?php endwhile; 
+			endif;		
+		;?>
+			<?php wp_reset_postdata(); ?>
                 
 
 			
