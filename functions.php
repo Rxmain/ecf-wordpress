@@ -18,16 +18,6 @@ function mpf_enqueue_styles_and_scripts() {
 }
 add_action('wp_enqueue_scripts', 'mpf_enqueue_styles_and_scripts');
 
-
-
-function meks_which_template_is_loaded() {
-    if ( is_super_admin() ) {
-        global $template;
-        print_r( $template );
-    }
-}
-add_action( 'wp_footer', 'meks_which_template_is_loaded' );
-
 /* Fonction pour gérer les tailles d'images */
 function theme_new_image(){
 

@@ -113,8 +113,7 @@
                         $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); 
                     ?>
                     <article class="card">
-                        <img loading="lazy"  src="<?php echo get_template_directory_uri(); ?>/img/formation-1.jpg" alt="Some code" class="card-img" srcset="<?php echo get_template_directory_uri(); ?>/img/formation-1.jpg,
-                        <?php echo get_template_directory_uri(); ?>/img/formation-1_2x.jpg 2x">
+                        <img loading="lazy"  src="<?php echo get_the_post_thumbnail_url($formation->ID) ?>" alt="Some code" class="card-img">
                         <div class="card-content">
                             <h2 class="card-title"><?php echo $title; ?></h2>
                             <p class="card-excerpt"><?php echo $excerpt; ?></p>

@@ -670,7 +670,7 @@ body:not(.home):not(.single-formations) main {
     min-height: 24rem;
 }
 
-.wpcf7-form input[name='placeholder'], span.placeholder{
+.wpcf7-form input[type='text'], .wpcf7-form input[type='email'], span.placeholder{
     font-style: italic;
     color: rgba(51, 17, 0, .5);
 }
